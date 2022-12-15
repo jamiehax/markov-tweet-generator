@@ -16,23 +16,23 @@ While I had high hopes for this model, it unforuntaely failed to live up to its 
 ### Data
 Comes with the following twitter data that has been cleaned up to be usable for the model:
 
-'trump'
+```trump```
 
 Tweets from Donald Trumps twitter account before it was banned, adapted from: https://www.kaggle.com/datasets/austinreese/trump-tweets
 
-'biden' 
+```biden```
 
 Tweets from Joe Biden's twitter account, adapted from https://www.kaggle.com/datasets/rohanrao/joe-biden-tweets
 
-'musk' 
+```musk```
 
 Tweets from Elon Musk's twitter account, adapted from https://www.kaggle.com/datasets/ayhmrba/elon-musk-tweets-2010-2021
 
-'dem' 
+```dem```
 
 Tweets from Democrats about the 2020 election, adapted from https://www.kaggle.com/datasets/kapastor/democratvsrepublicantweets
 
-'rep' 
+```rep```
 
 Tweets from Republicans about the 2020 election, adapted from https://www.kaggle.com/datasets/kapastor/democratvsrepublicantweets
 
