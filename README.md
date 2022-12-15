@@ -15,7 +15,7 @@ Run the program from the command line with ```python3 tweet_generator.py``` with
 
 ```-h``` prints the help message for the arguments.
 
-```-d``` specifies which model to train. Takes one of ```trump``` (Donald Trump tweets), ```biden``` (Joe Biden tweets), ```musk``` (Elon Musk tweets), ```dem``` (tweets from Democrats about the 2020 election), ```rep``` (tweets from Republicans about the 2020 election).
+```-d``` specifies which model to train. Takes one of `trump` (Donald Trump tweets), `biden` (Joe Biden tweets), `musk` (Elon Musk tweets), `dem` (tweets from Democrats about the 2020 election), `rep` (tweets from Republicans about the 2020 election).
 
 ```-m``` specifies the data to train the model on. Takes one of ```v1```, ```v2```, ```v3```. 
 
