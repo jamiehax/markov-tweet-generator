@@ -1,6 +1,9 @@
 # markov-tweet-generator
 Provides 3 trainable models for generating tweets.
 
+### Poster
+![Poster](poster.jpg)
+
 ### V1
 This is the simplest of the three models. It implements a first order markov chain - where each state represents a word - to generate text by sampling from the conditional probability distribution.
 
@@ -12,8 +15,6 @@ While I had high hopes for this model, it unforuntaely failed to live up to its 
 
 ### (lack of) Bias Safeguards
 These models are all trained on real tweets, and we all know the kind of tweets that can come out of twitter. None of the models currently have any safeguards against generating biased or innapropriate tweets. Use at your own discretion, but I reccomend staying away from prompts that might incentivize the model to generate a biased tweet.
-
-![Poster](poster.jpg)
 
 ## Running tweet_generator.py
 Run the program from the command line with ```python3 tweet_generator.py``` with the following arguments:
