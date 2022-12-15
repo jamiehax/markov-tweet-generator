@@ -1,7 +1,6 @@
 # markov-tweet-generator
 Provides 3 trainable models for generating tweets.
 
-### Poster
 ![Poster](poster.jpg)
 
 ### V1
