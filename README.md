@@ -13,6 +13,30 @@ This model performs the best of the 3, and implements a third order markov chain
 ### V3
 While I had high hopes for this model, it unforuntaely failed to live up to its potential. It implements a second order markov chain with P.O.S. tagging. In this model, the states are parts of speech which depend only on the previous state and are transitioned between based on probabilities learned from the training data. Each state emits a word, which depends on the previous two words.
 
+### Data
+Comes with the following twitter data that has been cleaned up to be usable for the model:
+
+'trump'
+
+Tweets from Donald Trumps twitter account before it was banned, adapted from: https://www.kaggle.com/datasets/austinreese/trump-tweets
+
+'biden' 
+
+Tweets from Joe Biden's twitter account, adapted from https://www.kaggle.com/datasets/rohanrao/joe-biden-tweets
+
+'musk' 
+
+Tweets from Elon Musk's twitter account, adapted from https://www.kaggle.com/datasets/ayhmrba/elon-musk-tweets-2010-2021
+
+'dem' 
+
+Tweets from Democrats about the 2020 election, adapted from https://www.kaggle.com/datasets/kapastor/democratvsrepublicantweets
+
+'rep' 
+
+Tweets from Republicans about the 2020 election, adapted from https://www.kaggle.com/datasets/kapastor/democratvsrepublicantweets
+
+
 ### (lack of) Bias Safeguards
 These models are all trained on real tweets, and we all know the kind of tweets that can come out of twitter. None of the models currently have any safeguards against generating biased or innapropriate tweets. Use at your own discretion, but I reccomend staying away from prompts that might incentivize the model to generate a biased tweet.
 
