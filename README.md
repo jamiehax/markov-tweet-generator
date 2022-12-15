@@ -10,6 +10,9 @@ This model performs the best of the 3, and implements a third order markov chain
 ### V3
 While I had high hopes for this model, it unforuntaely failed to live up to its potential. It implements a second order markov chain with P.O.S. tagging. In this model, the states are parts of speech which depend only on the previous state and are transitioned between based on probabilities learned from the training data. Each state emits a word, which depends on the previous two words.
 
+### (lack of) Bias Safeguards
+These models are all trained on real tweets, and we all know the kind of tweets that can come out of twitter. None of the models currently have any safeguards against generating biased or innapropriate tweets. Use at your own discretion, but I reccomend staying away from prompts that might incentivize the model to generate a biased tweet.
+
 ## Running tweet_generator.py
 Run the program from the command line with ```python3 tweet_generator.py``` with the following arguments:
 
