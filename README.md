@@ -18,7 +18,7 @@ Comes with the following twitter data that has been cleaned up to be usable for 
 
 ```trump```
 
-Tweets from Donald Trumps twitter account before it was banned, adapted from: https://www.kaggle.com/datasets/austinreese/trump-tweets
+Tweets from Donald Trump's twitter account before it was banned, adapted from: https://www.kaggle.com/datasets/austinreese/trump-tweets
 
 ```biden```
 
