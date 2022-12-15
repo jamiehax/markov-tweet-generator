@@ -13,7 +13,7 @@ While I had high hopes for this model, it unforuntaely failed to live up to its 
 ### (lack of) Bias Safeguards
 These models are all trained on real tweets, and we all know the kind of tweets that can come out of twitter. None of the models currently have any safeguards against generating biased or innapropriate tweets. Use at your own discretion, but I reccomend staying away from prompts that might incentivize the model to generate a biased tweet.
 
-![Poster](https://github.com/jamiehax/markov-tweet-generator/blob/poster.pdf)
+![Poster]([https://github.com/jamiehax/markov-tweet-generator/blob/poster.pdf](https://github.com/jamiehax/markov-tweet-generator/blob/ec5c473282a80f7e9f4f194e9ed5cf75bf643c40/poster.pdf)
 
 ## Running tweet_generator.py
 Run the program from the command line with ```python3 tweet_generator.py``` with the following arguments:
