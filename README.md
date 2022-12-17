@@ -55,4 +55,22 @@ For example, to train the V2 model on Joe Biden tweets, run
 Once the model is built, you can input a text prompt and will be returned the predicted tweet. The ```V1``` model takes a minimum 1 word as input, the ```V2``` model takes a minimum 3 words as input, and the ```V3``` model takes a minimum 2 words as input.
 
 ## Using your own data
-will be implemented in the near future
+To use your own data, add it as an entry into the `data` dictionary in the `main` method. The entry should be in the following format:
+
+```{python}
+data_name: {'file': "path/to/data.csv",
+            'link': "https://github.com/jamiehax/markov-tweet-generator",
+            'size': 34880,
+            'column': 7
+}
+```
+
+`data_name` is the key for your data in the dictionary. It must match whatever string is passed in the `-d` argument when running the program.
+
+`file` is the path the the file containing the data. It must be in CSV format.
+
+`link` (optional) is the link to where the data came from.
+
+'size' (optional) is the number of tweets (rows) in the data for the progress bar.
+
+'column' is the column of the CSV file containing the tweets.
