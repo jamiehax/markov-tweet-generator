@@ -65,7 +65,7 @@ data_name: {'file': "path/to/data.csv",
 }
 ```
 
-`data_name` is the key for your data in the dictionary. It must match whatever string is passed in the `-d` argument when running the program.
+`data_name` is the key for your data in the dictionary. It must match whatever string is passed in the `-d` argument.
 
 `file` is the path the the file containing the data. It must be in CSV format.
 
