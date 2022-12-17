@@ -71,6 +71,6 @@ data_name: {'file': "path/to/data.csv",
 
 `link` (optional) is the link to where the data came from.
 
-`size` (optional) is the number of tweets (rows) in the data for the progress bar.
+`size` (optional) is the number of tweets (rows) in the data. Used for the progress bar while processing data/building the model.
 
 `column` is the column of the CSV file containing the tweets.
