@@ -706,10 +706,23 @@ if __name__ == "__main__":
     else:
         model = V3()
 
-    model.build_model(data[args.data]['file'], data[args.data]['column'], data[args.data]['size'])
+    file_path = data[args.data]['file']
+    column = data[args.data]['column']
+
+    if 'size' in data[args.data]: 
+        size = data[args.data]['size']
+    else:
+        size = 1
+    
+    if 'link' in data[args.data]: 
+        link = data[args.data]['link']
+    else:
+        link = ""
+
+    model.build_model(file_path, column, size)
 
     print(args.model, "model built with", args.data, "tweets adapted from:")
-    print(data[args.data]['link'])
+    print(link)
 
     while True:
         prompt = input("enter a prompt, or 'q' to quit: ")
