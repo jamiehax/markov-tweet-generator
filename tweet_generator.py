@@ -43,30 +43,17 @@ class V3:
         self.given_pos = {}
     
 
-    def process_data(self, file_name: str, data_name: str) -> list[tuple]:
-        """ Normalize the tweets by making all words lowercase and removeing punctuation, links, and pictures, and add POS tags """
-
-        data_columns = {"trump": 2,
-                        "biden": 3,
-                        "musk": 7,
-                        "dem": 2,
-                        "rep": 2}
-        
-        data_lengths = {"trump": 43352,
-                        "biden": 6064,
-                        "musk": 34880,
-                        "dem": 42068,
-                        "rep": 44392}
+    def process_data(self, path: str, col: str, length: int):
         
         tweets = []
-        with open(file_name, 'r') as csvfile:
+        with open(path, 'r') as csvfile:
             tweet_reader = csv.reader(csvfile)
             next(tweet_reader)
             print("processing data")
-            for row in tqdm(tweet_reader, total=data_lengths[data_name]):
+            for row in tqdm(tweet_reader, total=length):
 
                 # get tweet content
-                tweet_content = row[data_columns[data_name]]
+                tweet_content = row[col]
 
                 # normalize each word in tweet
                 tweet_content = tweet_content.lower()
@@ -119,11 +106,11 @@ class V3:
         return cleaned_words
 
 
-    def build_model(self, file_name: str, data_name: str):
-        """ Add necesary word and POS counts to calculate Markov probabilities """
+    def build_model(self, path: str, col: str, length: int):
+        """ Add necesary counts to calculate word probabilities """
 
-        # list of lists (tweets) of [(word, POS)]
-        data = self.process_data(file_name, data_name)
+        # list of [(tweet_id, tweet_content)]
+        data = self.process_data(path, col, length)
         self.num_examples = len(data)
 
         print("building model")
@@ -304,30 +291,18 @@ class V2:
         self.given_words = {}
     
 
-    def process_data(self, file_name: str, data_name: str) -> list[tuple]:
+    def process_data(self, path: str, col: str, length: int):
         """ Normalize the tweets by making all words lowercase and removeing punctuation, links, and pictures """
-
-        data_columns = {"trump": 2,
-                        "biden": 3,
-                        "musk": 7,
-                        "dem": 2,
-                        "rep": 2}
-        
-        data_lengths = {"trump": 43352,
-                        "biden": 6064,
-                        "musk": 34880,
-                        "dem": 42068,
-                        "rep": 44392}
         
         tweets = []
-        with open(file_name, 'r') as csvfile:
+        with open(path, 'r') as csvfile:
             tweet_reader = csv.reader(csvfile)
             next(tweet_reader)
             print("processing data")
-            for row in tqdm(tweet_reader, total=data_lengths[data_name]):
+            for row in tqdm(tweet_reader, total=length):
 
                 # get tweet content
-                tweet_content = row[data_columns[data_name]]
+                tweet_content = row[col]
 
                 # normalize each word in tweet
                 tweet_content = tweet_content.lower()
@@ -377,11 +352,11 @@ class V2:
         return cleaned_words
 
 
-    def build_model(self, file_name: str, data_name: str):
+    def build_model(self, path: str, col: str, length: int):
         """ Add necesary counts to calculate word probabilities """
 
-        # list of lists (tweets) of [(word, POS)]
-        data = self.process_data(file_name, data_name)
+        # list of [(tweet_id, tweet_content)]
+        data = self.process_data(path, col, length)
         self.num_examples = len(data)
 
         print("building model")
@@ -543,30 +518,18 @@ class V1:
         self.given_words = {}
 
 
-    def process_data(self, file_name: str, data_name: str):
+    def process_data(self, path: str, col: str, length: int):
         """ Normalize and tokenize the tweets """
-
-        data_columns = {"trump": 2,
-                        "biden": 3,
-                        "musk": 7,
-                        "dem": 2,
-                        "rep": 2}
-        
-        data_lengths = {"trump": 43352,
-                        "biden": 6064,
-                        "musk": 34880,
-                        "dem": 42068,
-                        "rep": 44392}
         
         tweets = []
-        with open(file_name, 'r') as csvfile:
+        with open(path, 'r') as csvfile:
             tweet_reader = csv.reader(csvfile)
             next(tweet_reader)
             print("processing data")
-            for row in tqdm(tweet_reader, total=data_lengths[data_name]):
+            for row in tqdm(tweet_reader, total=length):
 
                 # get tweet content
-                tweet_content = row[data_columns[data_name]]
+                tweet_content = row[col]
 
                 # normalize each word in tweet
                 tweet_content = tweet_content.lower()
@@ -616,11 +579,11 @@ class V1:
         return cleaned_words
 
 
-    def build_model(self, file_name: str, data_name: str):
+    def build_model(self, path: str, col: str, length: int):
         """ Add necesary counts to calculate word probabilities """
 
         # list of [(tweet_id, tweet_content)]
-        data = self.process_data(file_name, data_name)
+        data = self.process_data(path, col, length)
         self.num_examples = len(data)
 
         print("building model")
@@ -694,7 +657,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Train a Markov Model to generate tweets")
     parser.add_argument(
         "-d", "--data",
-        default="dem",
+        default="biden",
         help="Twitter data to train model on. One of: 'trump' (Donald Trump), 'biden' (Joe Biden), 'musk' (Elon Musk), 'dem' (2020 Election), 'rep' (2020 Election)",
     )
     parser.add_argument(
@@ -704,19 +667,37 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    data_files = {"trump": "data/trump.csv",
-                  "biden": "data/biden.csv",
-                  "musk": "data/musk.csv",
-                  "dem": "data/democrat.csv",
-                  "rep": "data/republican.csv"}
-    
-    data_links = {"trump": "https://www.kaggle.com/datasets/austinreese/trump-tweets",
-                  "biden": "https://www.kaggle.com/datasets/rohanrao/joe-biden-tweets",
-                  "musk": "https://www.kaggle.com/datasets/ayhmrba/elon-musk-tweets-2010-2021",
-                  "dem": "https://www.kaggle.com/datasets/kapastor/democratvsrepublicantweets",
-                  "rep": "https://www.kaggle.com/datasets/kapastor/democratvsrepublicantweets"}
+    data = {
+        'trump': {'file': "data/trump.csv",
+                  'link': "https://www.kaggle.com/datasets/austinreese/trump-tweets",
+                  'size': 43352,
+                  'column': 2
+        },
 
-    data_file = data_files[args.data]
+        'biden': {'file': "data/biden.csv",
+                  'link': "https://www.kaggle.com/datasets/rohanrao/joe-biden-tweets",
+                  'size': 6064,
+                  'column': 3
+        },
+
+        'musk': {'file': "data/musk.csv",
+                 'link': "https://www.kaggle.com/datasets/ayhmrba/elon-musk-tweets-2010-2021",
+                 'size': 34880,
+                 'column': 7
+        },
+
+        'dem': {'file': "data/democrat.csv",
+                'link': "https://www.kaggle.com/datasets/kapastor/democratvsrepublicantweets",
+                'size': 42068,
+                'column': 2
+        },
+
+        'rep': {'file': "data/republican.csv",
+                'link': "https://www.kaggle.com/datasets/kapastor/democratvsrepublicantweets",
+                'size': 44392,
+                'column': 2
+        }
+    }
 
     if args.model == "v1":
         model = V1()
@@ -725,10 +706,10 @@ if __name__ == "__main__":
     else:
         model = V3()
 
-    model.build_model(data_file, args.data)
+    model.build_model(data[args.data]['file'], data[args.data]['column'], data[args.data]['size'])
 
     print(args.model, "model built with", args.data, "tweets adapted from:")
-    print(data_links[args.data])
+    print(data[args.data]['link'])
 
     while True:
         prompt = input("enter a prompt, or 'q' to quit: ")
