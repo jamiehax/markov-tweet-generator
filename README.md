@@ -55,7 +55,7 @@ For example, to train the V2 model on Joe Biden tweets, run
 Once the model is built, you can input a text prompt and will be returned the predicted tweet. The ```V1``` model takes a minimum 1 word as input, the ```V2``` model takes a minimum 3 words as input, and the ```V3``` model takes a minimum 2 words as input.
 
 ## Using your own data
-To use your own data, add it as an entry into the `data` dictionary in the `main` method. The entry should be in the following format:
+To use your own data, add the following information as an entry into the `data` dictionary in the `main` method. The data must be in a CSV file, and the entry should be in the following format:
 
 ```{python}
 data_name: {'file': "path/to/data.csv",
